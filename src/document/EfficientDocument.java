@@ -8,6 +8,7 @@ import java.util.List;
  * and sentences and then stores those values.
  * 
  * @author UC San Diego Intermediate Programming MOOC team
+ * @author Zhang Yong Zhe
  */
 public class EfficientDocument extends Document {
 
@@ -52,8 +53,24 @@ public class EfficientDocument extends Document {
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
 		
+		numWords = 0;
+		numSentences = 0;
+		numSyllables = 0;
+		
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
+		for (String string : tokens) {
+			if (isWord(string)) {
+				numWords++;
+				// last word without ounctuation also counts a sentence
+				if (string.equals(tokens.get(tokens.size() - 1))) {
+					numSentences++;
+				}
+			} else {
+				numSentences++;
+			}
+			numSyllables = numSyllables + countSyllables(string);
+		}
 	}
 
 	
@@ -73,7 +90,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSentences() {
 		//TODO: write this method.  Hint: It's simple
-		return 0;
+		return numSentences;
 	}
 
 	
@@ -94,7 +111,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumWords() {
 		//TODO: write this method.  Hint: It's simple
-	    return 0;
+	    return numWords;
 	}
 
 
@@ -116,7 +133,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSyllables() {
         //TODO: write this method.  Hint: It's simple
-        return 0;
+        return numSyllables;
 	}
 	
 	// Can be used for testing

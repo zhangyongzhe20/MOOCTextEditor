@@ -68,8 +68,8 @@ public abstract class Document {
 	    // getNumSyllables method in BasicDocument (module 2) and 
 	    // EfficientDocument (module 3).
 		// Vowel characters
-		//String vowels = "aAeEiIoOuUyY";
-		
+//		String vowels = "aAeEiIoOuUyY";
+//		
 //		String text_ = text;
 //		text = word;
 //		List<String> words = getTokens("[aAeEIiOoUuYy]+");
@@ -170,7 +170,15 @@ public abstract class Document {
 		//System.out.println(getNumWords());
 		//System.out.println(getNumSentences());
 		//System.out.println(getNumSyllables());
- 	    return 206.835 - 1.015 * (getNumWords() / getNumSentences()) - 84.6 * (getNumSyllables() / getNumWords());
+		double result = 0, result2 = 0, result3 = 0;
+		result2 = 1.015 * (getNumWords() / getNumSentences());
+		result3 = 84.6* ((double) getNumSyllables() /(double) getNumWords());
+		//System.out.println(result2);
+		//System.out.println(result3);
+ 	    result =  206.835 - 1.015 * ((double)getNumWords() / (double)getNumSentences()) 
+ 			             - 84.6*((double)getNumSyllables() / (double)getNumWords());
+		//System.out.println(result);
+ 	    return result;
 		//return 0.0;
 		//return text.length();
 	}
