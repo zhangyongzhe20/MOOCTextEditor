@@ -12,6 +12,7 @@ import org.junit.Test;
 
 /**
  * @author UC San Diego MOOC team
+ * @author Zhang Yong Zhe
  *
  */
 public class DictionaryLLTester {

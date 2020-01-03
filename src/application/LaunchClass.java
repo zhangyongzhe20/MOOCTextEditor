@@ -2,6 +2,8 @@ package application;
 
 import java.util.Random;
 
+import spelling.DictionaryBST;
+
 
 public class LaunchClass {
 	
