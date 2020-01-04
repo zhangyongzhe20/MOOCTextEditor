@@ -3,16 +3,19 @@
  */
 package spelling;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * WPTree implements WordPath by dynamically creating a tree of words during a Breadth First
  * Search of Nearby words to create a path between two words. 
  * 
  * @author UC San Diego Intermediate MOOC team
+ * @author Zhang Yong Zhe
  *
  */
 public class WPTree implements WordPath {
@@ -27,9 +30,9 @@ public class WPTree implements WordPath {
 	public WPTree () {
 		this.root = null;
 		// TODO initialize a NearbyWords object
-		// Dictionary d = new DictionaryHashSet();
-		// DictionaryLoader.loadDictionary(d, "data/dict.txt");
-		// this.nw = new NearbyWords(d);
+		 Dictionary d = new DictionaryHashSet();
+		 DictionaryLoader.loadDictionary(d, "data/dict.txt");
+		 this.nw = new NearbyWords(d);
 	}
 	
 	//This constructor will be used by the grader code
@@ -41,8 +44,37 @@ public class WPTree implements WordPath {
 	// see method description in WordPath interface
 	public List<String> findPath(String word1, String word2) 
 	{
-	    // TODO: Implement this method.
-	    return new LinkedList<String>();
+		// TODO: Implement this method.
+		// return when word1 and word2 not in the dictionary
+		if(root != null) {
+			root =null;
+		}
+		if (!nw.dict.isWord(word1) && !nw.dict.isWord(word2)) {
+			return new LinkedList<String>();
+		}
+		Queue<WPTreeNode> que = new LinkedList<WPTreeNode>();
+		List<String> visited = new ArrayList<String>();
+		root = new WPTreeNode(word1, root);
+		visited.add(word1);
+		que.add(root);
+
+		while (!que.isEmpty() && !visited.contains(word2)) {
+			WPTreeNode curr = que.remove();
+
+			for (String word : nw.distanceOne(curr.getWord(), true)) {
+				if (!visited.contains(word)) {
+					curr.addChild(word);
+					visited.add(word);
+					que.add(new WPTreeNode(word, curr));
+					if (word.equals(word2)) {
+						WPTreeNode goal = new WPTreeNode(word2, curr);
+						return goal.buildPathToRoot();
+					}
+				}
+
+			}
+		}
+		return new LinkedList<String>();
 	}
 	
 	// Method to print a list of WPTreeNodes (useful for debugging)
