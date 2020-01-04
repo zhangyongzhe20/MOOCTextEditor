@@ -36,9 +36,9 @@ public class BasicDocument extends Document
 	{
 		//TODO: Implement this method in week 2 according to the comments above.  
 		// See the Module 2 support videos if you need help.
-			List<String> words = this.getTokens("[a-zA-Z]+");
-			return words.size();
-		    
+//			List<String> words = 
+//			return words.size();
+		  return this.getTokens("[a-zA-Z]+").size();
 	    //return 0;
 	}
 	
@@ -60,8 +60,9 @@ public class BasicDocument extends Document
 	    //TODO: Implement this method.  See the Module 2 support videos 
         // if you need help.
 		
-		List<String> words = this.getTokens("[^!.?]+");
-		return words.size();
+//		List<String> words = this.getTokens("[^!.?]+");
+//		return words.size();
+		return this.getTokens("[^!.?]+").size();
       //  return 0;
 	}
 	
@@ -101,22 +102,22 @@ public class BasicDocument extends Document
 		
 		/* Our solution using regex's.  Uncoment here to run it*/
 		
-//		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
-//		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
-//		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
-//		
-//		
-//		return tokens.size() - (loneEs.size() - singleEs.size());
+		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
+		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
+		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
+		
+		
+		return tokens.size() - (loneEs.size() - singleEs.size());
 		
 		
 		/* Our solution that does NOT use regexs to find syllables */
-		List<String> tokens = getTokens("[a-zA-Z]+");
-		int totalSyllables = 0;
-		for (String word : tokens)
-		{
-			totalSyllables += countSyllables(word);
-		}
-		return totalSyllables;
+//		List<String> tokens = getTokens("[a-zA-Z]+");
+//		int totalSyllables = 0;
+//		for (String word : tokens)
+//		{
+//			totalSyllables += countSyllables(word);
+//		}
+//		return totalSyllables;
 	}
 	
 	

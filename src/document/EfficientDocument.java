@@ -21,8 +21,6 @@ public class EfficientDocument extends Document {
 		super(text);
 		processText();
 	}
-	
-	
 	/** 
 	 * Take a string that either contains only alphabetic characters,
 	 * or only sentence-ending punctuation.  Return true if the string
@@ -46,23 +44,23 @@ public class EfficientDocument extends Document {
      */
 	private void processText()
 	{
-		// Call getTokens on the text to preserve separate strings that are 
-		// either words or sentence-ending punctuation.  Ignore everything
+		// Call getTokens on the text to preserve separate strings that are
+		// either words or sentence-ending punctuation. Ignore everything
 		// That is not a word or a sentence-ending puctuation.
 		// MAKE SURE YOU UNDERSTAND THIS LINE BEFORE YOU CODE THE REST
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
-		
+
 		numWords = 0;
 		numSentences = 0;
 		numSyllables = 0;
-		
-		// TODO: Finish this method.  Remember the countSyllables method from 
-		// Document.  That will come in handy here.  isWord defined above will also help.
+
+		// TODO: Finish this method. Remember the countSyllables method from
+		// Document. That will come in handy here. isWord defined above will also help.
 		for (String string : tokens) {
 			if (isWord(string)) {
 				numWords++;
-				// last word without ounctuation also counts a sentence
+				// last word without punctuation also counts a sentence
 				if (string.equals(tokens.get(tokens.size() - 1))) {
 					numSentences++;
 				}
